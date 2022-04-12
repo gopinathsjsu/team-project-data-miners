@@ -1,9 +1,9 @@
-team-project-data-miners
+# team-project-data-miners
 team-project-data-miners created by GitHub Classroom
 
-TEAM MEMBERS:
+**TEAM MEMBERS:**
 
-Avinash Ramesh
+Avinash Ramesh 
 
 PoojaShree Ns
 
@@ -11,14 +11,14 @@ Sharad Nataraj
 
 Abraham kong
 
-TECH STACK:
+**TECH STACK:**
 
-PYTHON FASTPI - BACKEND
+_PYTHON FASTPI - BACKEND_
 
-HTML,CSS,JAVASCRIPT - FRONTEND
+_HTML,CSS,JAVASCRIPT - FRONTEND_
 
-MYSQL HOSTED IN CLOUD - DB
+_MYSQL HOSTED IN CLOUD - DB_
 
-AGILE BOARD:
+**AGILE BOARD:**
 
 https://trello.com/b/HSzzROqp
