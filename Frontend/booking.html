@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/ionicons.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="booking.css" />
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Google font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" />
+    <!-- Jquery needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <script src="main.js"></script>
+    <script src="navbar.js"></script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+<!--     <script src="hotel_listing.js"></script> -->
+    <script src="booking.js"></script>
+    <div>
+      <my-header> </my-header>
+    </div>
+          <booking-1> </booking-1>
+    <script>
+division_select = document.getElementById('exampleFormControlSelect1');
+data = document.getElementById('test');
+division_select.onchange = function(){
+let optionHTML="";
+var option = division_select.options[division_select.selectedIndex].value;
+for (i=0;i<option;i++) {
+optionHTML +=`
+<div class="form-group">
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample`+i+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Room Details -`+(i+1)+` 
+  </a>
+<div class="collapse" id="collapseExample`+i+`">
+  <div class="card card-body">
+    
+<div class="preferences">
+<div class="form-check form-check-inline">
+<div>
+<span><b>Room Type</b><span>*</span></span><br />
+<br />
+<input name="room-type-input `+(i+1)+`" type="radio" id="king" value="king" />
+<label class="form-check-label" for="king">&nbsp;&nbsp;King Room</label>
+<br />
+<input name="room-type-input `+(i+1)+`" type="radio" id="queen" value="queen" />
+<label class="form-check-label" for="queen">&nbsp;&nbsp;Queen Room</label>
+<br />
+<input name="room-type-input `+(i+1)+`" type="radio" id="standard" value="standard" />
+<label class="form-check-label" for="standard">&nbsp;&nbsp;Standard Room</label>
+</div>
+</div>
+<br />
+<br />
+<div class="form-check form-check-inline">
+<div>
+<span><b>Meal Type</b><span>*</span></span><br />
+<br />
+<input name="meal `+(i+1)+`" type="checkbox" id="breakfast" value="breakfast" />
+<label class = "form-check-label" for="breakfast">&nbsp;&nbsp;Breakfast</label>
+<br />
+<input name="meal `+(i+1)+`" type="checkbox" id="lunch" value="lunch" />
+<label class ="form-check-label" for="lunch">&nbsp;&nbsp;Lunch</label>
+<br />
+<input name="meal `+(i+1)+`" type="checkbox" id="dinner" value="dinner" />
+<label class="form-check-label" for="dinner">&nbsp;&nbsp;Dinner</label>
+</div>
+</div>
+<br />
+<br />
+<div class="form-check form-check-inline">
+<div>
+<span><b>Swimming Pool Access</b><span>*</span></span><br />
+<br />
+<input name="pool `+(i+1)+`" type="radio" value=1 />
+<label name="action"="form-check-label" for="poolyes">&nbsp;&nbsp;Yes</label>
+<br />
+<input name="pool `+(i+1)+`" type="radio" value=0 />
+<label name="action"="form-check-label" for="poolno">&nbsp;&nbsp;No</label>
+</div>
+</div>
+<br />
+<br />
+<div class="form-check form-check-inline">
+<div>
+<span><b>Fitness Room Access</b><span>*</span></span><br />
+<br />
+<input name="fitroom-type-input `+(i+1)+`" type="radio" id="fityes" value=1 />
+<label class="form-check-label" for="fityes">&nbsp;&nbsp;Yes</label>
+<br />
+<input name="fitroom-type-input `+(i+1)+`" type="radio" id="fitno" value=0 />
+<label class="form-check-label" for="fitno">&nbsp;&nbsp;No</label>
+</div>s
+</div>
+</div>
+  </div>
+</div>
+<br/></div>`
+}
+data.innerHTML = optionHTML;
+} </script>
+ <script src="booking_confirmation.js"></script>   
+  </body>
+  <my-footer> </my-footer>
+</html>
