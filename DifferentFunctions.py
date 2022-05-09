@@ -1,6 +1,6 @@
 from DbModels import *
 
-def add_customer(Customer_first_name,Customer_last_name,Customer_Phone,Customer_email_id):
+def add_customer(Customer_first_name,Customer_last_name,Customer_email_id,Customer_Phone=0):
     '''
     :param Customer_id:
     :param Customer_first_name:
@@ -9,10 +9,16 @@ def add_customer(Customer_first_name,Customer_last_name,Customer_Phone,Customer_
     :param Customer_email_id:
     :return:
     '''
-    add_customer = Customer(Customer_first_name=Customer_first_name,Customer_last_name=Customer_last_name,Customer_Phone=Customer_Phone,Customer_email_id=Customer_email_id)
-    session.add(add_customer)
-    session.commit()
-    return "Successfully Added"
+    try:
+      add_customer = Customer(Customer_first_name=Customer_first_name,Customer_last_name=Customer_last_name,Customer_Phone=Customer_Phone,Customer_email_id=Customer_email_id)
+      session.add(add_customer)
+      session.commit()
+      return "Successfully Added"
+    except:
+      session.rollback()
+      raise
+    finally:
+      session.close()
 
 def get_all_customer_data():
     '''
@@ -47,6 +53,18 @@ def get_specific_user_data(id):
     customer = session.query(Customer).filter_by(Customer_id=id).one()
     return customer.__dict__
 
+def check_specific_user_exist(email_id):
+  '''
+  :param id:
+  :return:
+  '''
+  customer = bool(session.query(Customer).filter_by(Customer_email_id=email_id).first())
+  if customer:
+    return True
+  else:
+    return False
+    
+  
 def get_all_hotels():
     '''
     :return:
@@ -292,3 +310,89 @@ def retrive_all_booking_by_hotel(id):
               book.Booking_details.Check_in_date,book.Booking_details.check_out_date,book.Booking_details.check_out_time,book.Booking_details.Check_in_time,book.Booking_details.No_of_guest,
             book.Booking_details.Breakfast_included,book.Booking_details.Lunch_included,book.Booking_details.Dinner_included,
               book.Booking_details.hotel_id,book.Booking_details.room_type_id,book.Booking_Status.Status)
+        
+
+def find_availabilty(check_in: str,check_out: str):
+    from fastapi.encoders import jsonable_encoder
+    ''':cvar
+    '''
+    print(check_in,check_out)
+    with engine.connect() as con:
+        query='''
+with tmp1 as(
+select hotel_id,room_type_id,count(*)/DATEDIFF('{check_out}','{check_in}') as booked_rooms from dates d inner join `Booking.Booking_details` b  on d.fulldate between b.Check_in_date and b.check_out_date where d.fulldate between '{check_in}' and DATE_SUB('{check_out}',INTERVAL 1 DAY) group by hotel_id,room_type_id
+),
+tmp2 as(
+select tmp1.hotel_id,tmp1.room_type_id,tmp1.booked_rooms from hotel_location_info_materialized_view as hv left join tmp1  on tmp1.hotel_id=hv.Hotel_id
+)
+select * from (
+select hr.hotel_id,hr.room_type_id,(hr.Count-COALESCE(tmp2.booked_rooms,0)) as "available_rooms" from `Hotel.Rooms_Counts` hr left join tmp2 on tmp2.hotel_id=hr.Hotel_id and tmp2.room_type_id=hr.room_type_id
+) t where available_rooms >0;'''.format(check_out=check_out,check_in=check_in)
+        rs = con.execute(query)
+        final=[]
+        for x in rs:
+            json_compatible_item_data = jsonable_encoder(x)
+            final.append(x)
+        
+        return final
+
+
+      
+def weekends(check_in: str,check_out: str):
+    with engine.connect() as con:
+        query='''
+        SELECT count(*) as weekdays from dates where fulldate between '{check_in}' and DATE_SUB('{check_out}',INTERVAL 1 DAY) and weekend=1;
+        '''.format(check_out=check_out,check_in=check_in)
+        rs = con.execute(query)
+        for row in rs:
+            return row
+
+def weekdays(check_in: str,check_out: str):
+    with engine.connect() as con:
+        query='''
+        SELECT count(*) as weekends from dates where fulldate between '{check_in}' and DATE_SUB('{check_out}',INTERVAL 1 DAY) and weekend=0'''.format(check_out=check_out,check_in=check_in)
+        rs = con.execute(query)
+        for row in rs:
+            return row
+
+def special_days(check_in: str,check_out: str):
+    with engine.connect() as con:
+        query='''select count(*) as “special_days” from (
+Select  *  from dates where fulldate in ('2022-05-30', '2022-06-19', '2022-06-20','2022-07-04', '2022-09-05','2022-10-10', '2022-11-11','2022-11-24','2022-12-25','2022-12-26')) t
+where fulldate between '{check_in}' and DATE_SUB('{check_out}',INTERVAL 1 DAY)'''.format(check_out=check_out,check_in=check_in)
+        rs = con.execute(query)
+        for row in rs:
+            return row
+
+
+def get_all_hotel_info(check_in: str,check_out: str):
+  with engine.connect() as con:
+        query='''
+        with tmp1 as(
+select hotel_id,room_type_id,count(*)/DATEDIFF('{check_out}','{check_in}') as booked_rooms from dates d inner join `Booking.Booking_details` b  on d.fulldate between b.Check_in_date and b.check_out_date where d.fulldate between '{check_in}' and DATE_SUB('{check_out}',INTERVAL 1 DAY) group by hotel_id,room_type_id
+),
+tmp2 as(
+select tmp1.hotel_id,tmp1.room_type_id,tmp1.booked_rooms from hotel_location_info_materialized_view as hv left join tmp1  on tmp1.hotel_id=hv.Hotel_id
+),
+tmp3 as(
+select * from (
+select hr.hotel_id,hr.room_type_id,floor(hr.Count-COALESCE(tmp2.booked_rooms,0)) as "available_rooms" from `Hotel.Rooms_Counts` hr left join tmp2 on tmp2.hotel_id=hr.Hotel_id and tmp2.room_type_id=hr.room_type_id
+) t where available_rooms >0)
+select h.Hotel_id,h.Hotel_name,h.Locaiton_address,h.State,h.Country,h.Zipcode,hr.Room_type_id,hr.Room_type_Name,hr.Room_capacity,tmp3.available_rooms,hr.Price from tmp3 inner join hotel_location_info_materialized_view h  on tmp3.hotel_id=h.Hotel_id inner join `Hotel.Rooms_types` hr on tmp3.room_type_id=hr.Room_type_id;'''.format(check_out=check_out,check_in=check_in)
+        rs = con.execute(query)
+        final=[]
+        for row in rs:
+            final.append(row)
+        return final
+
+def get_room_types_cost():
+  with engine.connect() as con:
+        query='''SELECT Room_type_id,Room_type_Name,Price FROM HotelBookinginfo.`Hotel.Rooms_types`'''
+        rs = con.execute(query)
+        final=[]
+        for row in rs:
+            final.append(row)
+        return final
+      
+
+          
