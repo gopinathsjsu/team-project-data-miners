@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="navbar.css" />
     <link rel="stylesheet" href="footer.css" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="hotel_dashboard.css" />
+    <link rel="stylesheet" href="rewards.css" />
     <!-- Google font -->
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
@@ -48,15 +48,58 @@
     <script src="navbar.js"></script>
     <script src="header.js"></script>
     <script src="footer.js"></script>
-    <script src="hotel_dashboard.js"></script>
     <div>
       <my-header> </my-header>
-      <h1>Dashboard</h1>
-      <!-- table for showing data -->
-      <div class="container p-0" id="Dashboard">
-        <table id="customers" onclick="handleClick(event);"></table>
+      <div class="img" id = "rewards">
       </div>
+      <div class="container">
     </div>
+    <script>
+      let user_token = sessionStorage.getItem("token");
+
+      const api_url =
+        "https://sticky-catnip-rowboat.glitch.me/api/v1/hotelbooking/tasks/rewards/get_rewards_by_id?usertoken=" +
+        user_token;
+
+      async function getapi(url) {
+        const response = await fetch(url);
+        var data = await response.json();
+
+        setTimeout(function () {
+          console.log(data);
+          show(JSON.stringify(data));
+        }, 1000);
+      }
+
+      getapi(api_url);
+
+      function show(data) {
+        data = JSON.parse(data);
+
+        let tab = `  <div> <h2> Your Loyality Points </h2> </div>
+        
+        <table style="background-color:#FFFFFF;">
+        <tr>
+          <th>Rewards</th>
+          <th>Loyality_brand</th>
+        </tr>`;
+
+        tab += "<tr>";
+        tab += "<td>" + data.Points + "</td>";
+
+        if (data.Points <= 300) {
+          tab += "<td>" + "Silver" + "</td>";
+        } else if (data.Points > 300 && data.Points <= 650) {
+          tab += "<td>" + "Gold" + "</td>";
+        } else {
+          tab += "<td>" + "Platnium" + "</td>";
+        }
+        tab += "</tr>";
+        tab += "</table>";
+
+        document.getElementById("rewards").innerHTML = tab;
+      }
+    </script>
   </body>
   <my-footer> </my-footer>
 </html>
