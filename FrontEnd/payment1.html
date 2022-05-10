@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/ionicons.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="payment1.css" />
+    <!-- Google font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" />
+    <!-- Jquery needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <script src="main.js"></script>
+    <script src="navbar.js"></script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+    <script src="booking.js"></script>
+    <script src="booking_confirmation.js"></script>
+    <div>
+      <my-header></my-header>
+    </div>
+    <div id="Payment_Summary_Page">
+      <div class="modal-body row" id="modal">
+        <div class="col-md-6" id="col1">
+          <div class="container p-0" id="card_Details">
+            <div class="payment_data">
+              <div class="card px-4">
+                <p>
+                  <br />
+                  <center>USER DETAILS</center>
+                  <br />
+                  <span id="first_name"> FIRST NAME:</span>
+                  <span id="last_name"> LAST NAME: </span>
+                  <span id="email_id"> EMAIL-ID: </span>
+                  <span id="phone"> PHONE NUMBER: </span>
+                </p>
+                <p class="h8 py-3">Payment Details</p>
+                <div class="row gx-3">
+                  <div class="col-12">
+                    <div class="d-flex flex-column">
+                      <p class="text mb-1">Person Name</p>
+                      <input
+                        class="form-control mb-3"
+                        type="text"
+                        placeholder="Name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="d-flex flex-column">
+                      <p class="text mb-1">Card Number</p>
+                      <input
+                        class="form-control mb-3"
+                        type="text"
+                        placeholder="1234 5678 435678"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="d-flex flex-column">
+                      <p class="text mb-1">Expiry</p>
+                      <input
+                        class="form-control mb-3"
+                        type="text"
+                        placeholder="MM/YYYY"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="d-flex flex-column">
+                      <p class="text mb-1">CVV/CVC</p>
+                      <input
+                        class="form-control mb-3 pt-2"
+                        type="password"
+                        placeholder="***"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    >
+                      Complete Booking
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" id="col2">
+          <div class="card card-blue p-3 text-white mb-3">
+            <span class="paymentamount">You have to pay</span>
+            <div class="d-flex flex-row align-items-end mb-3">
+              <h1 class="paymentamount" id="paymentamount">$</h1>
+            </div>
+            <h1 class="booking_summary">Booking Summary</h1>
+            <div class="paymentinfo">
+              <span
+                >Hotel Name:
+                <span name="hotel_name" id="hotel_name"></span></span
+              ><br />
+              <span
+                >Check-in Date: <span name="check-in" id="checkin"></span></span
+              ><br />
+              <span
+                >Check-out Date:
+                <span name="check-out" id="checkout"></span></span
+              ><br />
+              <span> No.of Rooms : <span id="room_count"> </span></span> <br />
+              <div id="room_details"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Payment Confirmation
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Kindly confirm Yes to complete the payment!!
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" onclick="onpayment()">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="payment1.js"></script>
+    <script>
+      var ele = document.getElementById("hotel_name");
+      var ele1 = document.getElementById("checkin");
+      var ele2 = document.getElementById("checkout");
+      var ele3 = document.getElementById("paymentamount");
+      var ele4 = document.getElementById("room_count");
+      var first_name = document.getElementById("first_name");
+      var last_name = document.getElementById("last_name");
+      var email_id = document.getElementById("email_id");
+      var phone_number = document.getElementById("phone");
+      ele.innerHTML = sessionStorage.getItem("hotel_info").split(":")[1];
+      ele1.innerHTML = sessionStorage.getItem("check_in");
+      ele2.innerHTML = sessionStorage.getItem("checkout");
+      ele3.innerHTML += `${total}`;
+      alert(ele3.innerHTML);
+      ele4.innerHTML = sessionStorage.getItem("room_count");
+      first_name.innerHTML += sessionStorage.getItem("fName");
+      last_name.innerHTML += sessionStorage.getItem("lName");
+      email_id.innerHTML += sessionStorage.getItem("email");
+      phone_number.innerHTML += sessionStorage.getItem("phone");
+    </script>
+  </body>
+  <my-footer> </my-footer>
+</html>

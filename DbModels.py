@@ -3,8 +3,7 @@ from sqlalchemy.orm import declarative_base,sessionmaker
 from sqlalchemy import Column,String,DateTime,Integer,BigInteger,create_engine
 
 #DB connect info
-engine = create_engine('mysql+pymysql://avnadmin:AVNS_ZT6dfWkjrsI7bgE@mysql-avinash-sjsu-adbc.aivencloud.com:17991'
-                       '/HotelBookinginfo')
+engine = create_engine('mysql+pymysql://avnadmin:AVNS_Afd9E3XwQ2tsE6k@cmpe-202-sjsu-e913.aivencloud.com:26399/HotelBookinginfo')
 
 #session creation
 Session = sessionmaker(bind=engine)

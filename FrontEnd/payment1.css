@@ -1,0 +1,45 @@
+.paymentinfo {
+  color: black;
+  font-family: Garamond, serif;
+  font-weight: lighter;
+  font-size: 17px;
+}
+
+.paymentamount
+{
+  color: blue;
+  font-family: Garamond, serif;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+#modal{
+  font-family: Garamond, serif;
+  background-color: #E0E0E0;
+}
+
+#card_Details{
+  font-family: Garamond, serif;
+  font-weight: bolder;
+  font-size: 15px;
+}
+
+.booking_summary{
+  font-family: Garamond, serif;
+   color: green;
+}
+
+#amount{
+  font-family: Garamond, serif;
+  color:blue;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+h1{
+  font-family: Garamond, serif;
+color: blue;
+font-size: 20px;
+font-weight: bolder;
+}
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
