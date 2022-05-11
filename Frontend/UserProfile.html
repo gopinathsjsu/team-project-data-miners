@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/ionicons.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="rewards.css" />
+    <!-- Google font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" />
+    <!-- Jquery needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <script src="navbar.js"></script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+    <div>
+      <my-header> </my-header>
+      <div class="container" id="profile"></div>
+      <script>
+        let user_token = sessionStorage.getItem("token");
+        console.log
+        const api_url =
+          "https://sticky-catnip-rowboat.glitch.me/api/v1/hotelbooking/tasks/customer/get_particular_customer_info?token=" +
+    user_token
+
+        async function getapi(url) {
+          const response = await fetch(url);
+          var data = await response.json();
+
+          setTimeout(function () {
+            console.log(data);
+            show(data);
+          }, 2000);
+        }
+
+        getapi(api_url);
+
+        
+        function show(data) {
+          let tab = `<table>
+          <tr>
+            <th>Customer ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>email</th>
+            <th>Phone Number</th>
+          </tr>
+            `;
+          
+          sessionStorage.setItem('CustomerID', data.Customer_id);
+
+          for (let r in data) {
+            tab += "<tr>";
+            tab += "<td>" + data.Customer_id + "</td>";
+            tab += "<td>" + data.Customer_first_name + "</td>";
+            tab += "<td>" + data.Customer_last_name + "</td>";
+            tab += "<td>" + data.Customer_email_id + "</td>";
+            tab += "<td>" + data.Customer_Phone + "</td>";
+            tab += "</table>";
+
+          document.getElementById("profile").innerHTML = tab;
+        }
+        }
+        
+        function editprofile(id){
+          
+        }
+      </script>
+       <div class="container" id="button">
+         <button class="submit-btn" onclick="window.location = /editprofile.html">Edit Profile</button>
+        </div>
+      <div class="container" id="EditProfile">
+         
+        </div> 
+      
+    </div>
+  </body>
+  <my-footer> </my-footer>
+</html>

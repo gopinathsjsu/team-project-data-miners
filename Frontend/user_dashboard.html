@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/ionicons.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="user_dashboard.css" />
+    <!-- Google font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" />
+    <!-- Jquery needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <script src="navbar.js"></script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+    <div>
+      <my-header> </my-header>
+      <div class="container" id="userdashboard"></div>
+      <script>
+        let user_token = sessionStorage.getItem("token");
+
+        const api_url =
+          "https://sticky-catnip-rowboat.glitch.me/api/v1/hotelbooking/tasks/customer/get_customer_booking_details?usertoken=" +
+          user_token;
+
+        async function getapi(url) {
+          const response = await fetch(url);
+          var data = await response.json();
+
+          setTimeout(function () {
+            console.log(data);
+            show(data);
+          }, 2000);
+        }
+
+        getapi(api_url);
+
+        function myFunction(booking_id) {
+          fetch(
+            "https://sticky-catnip-rowboat.glitch.me/api/v1/hotelbooking/tasks/customer/cancel_Booking?id=" +
+              booking_id
+          );
+          setTimeout(function () {
+            window.location.href =
+              "https://pitch-luck-amethyst.glitch.me/user_dashboard.html";
+          }, 2000);
+        }
+
+        function show(data) {
+          let tab = `<table table table-bordered table-dark">
+        <tr>
+          <th>Booking ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Contact Number</th>
+          <th>Email Id</th>
+          <th>Check-In Date</th>
+          <th>Check-Out Date</th>
+          <th>No of guest</th>
+          <th>Hotel</th>
+          <th>Room Type</th>
+          <th>Amenities</th>
+          <th>Meals</th>
+          <th>Status</th>
+          <th>Cancel Booking</th>
+         </tr>`;
+
+          for (let r in data) {
+            tab += "<tr>";
+            tab += "<td>" + data[r].Booking_id + "</td>";
+            tab += "<td>" + data[r].first_name + "</td>";
+            tab += "<td>" + data[r].last_name + "</td>";
+            tab += "<td>" + data[r].phone + "</td>";
+            tab += "<td>" + data[r].email_id + "</td>";
+            tab += "<td>" + data[r].Check_in_date + "</td>";
+            tab += "<td>" + data[r].check_out_date + "</td>";
+            tab += "<td>" + data[r].No_of_guest + "</td>";
+            tab += "<td>" + data[r].Hotel_name + "</td>";
+            tab += "<td>" + data[r].Room_type_Name + "</td>";
+            tab += "<td>" + data[r].Amenities + "</td>";
+            tab += "<td>" + data[r].meal + "</td>";
+            tab += "<td>" + data[r].status + "</td>";
+            if (data[r].status != "Cancelled") {
+              tab +=
+                "<td> <button onclick=myFunction(" +
+                data[r].Booking_id +
+                ") value = " +
+                data[r].Booking_id +
+                " >" +
+                "cancel" +
+                "</button> </td>";
+            } else {
+              tab += "<td> <button disabled>" + "Cancel" + "</button> </td>";
+            }
+            tab += "</tr>";
+          }
+          tab += "</table>";
+
+          document.getElementById("userdashboard").innerHTML = tab;
+        }
+      </script>
+    </div>
+  </body>
+  <my-footer> </my-footer>
+</html>
