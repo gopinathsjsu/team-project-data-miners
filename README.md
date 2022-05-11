@@ -43,3 +43,11 @@ https://trello.com/b/WqPeCt9t/data-miners-kanban
 **Communication:**  Everyone in our team worked jointly at every stage of the project, with equal contribution to frontend and backend.
 
 **Courage:**  Each individual in the team objectively evaluated their own results without making excuses and were always ready to respond to changes.
+
+
+## **Design**
+
+![HotelBookingER](https://user-images.githubusercontent.com/89234077/167771579-f6832b48-9363-4834-bbfc-c12c0d60a35a.png)
+
+
+
