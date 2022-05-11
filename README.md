@@ -16,7 +16,7 @@ Abraham kong
 
 _PYTHON FASTPI - BACKEND_
 
-API Docs Link: https://sticky-catnip-rowboat.glitch.me/api/v1/hotelbooking/tasks/docs
+**Docs/swagger UI:** https://sticky-catnip-rowboat.glitch.me/api/v1/hotelbooking/tasks/docs
 
 _HTML,CSS,JAVASCRIPT - FRONTEND_
 
