@@ -30,6 +30,6 @@ Backend : https://glitch.com/edit/#!/sticky-catnip-rowboat
 
 
 **AGILE BOARD:**
-https://trello.com/b/HSzzROqp
+https://trello.com/b/WqPeCt9t/data-miners-kanban
 
 
