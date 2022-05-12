@@ -130,3 +130,10 @@ NOTE: we had already included these features in glitch repo. Now adding here too
 
 2. _LOGOUT_
 
+
+**ARCHTECTURE DIAGRAM:**
+This was also avaiable in Glitch Repo
+![Archtecure](https://github.com/gopinathsjsu/team-project-data-miners/blob/main/Architecture.png?raw=true)
+
+
+
