@@ -135,5 +135,9 @@ NOTE: we had already included these features in glitch repo. Now adding here too
 This was also avaiable in Glitch Repo
 ![Archtecure](https://github.com/gopinathsjsu/team-project-data-miners/blob/main/Architecture.png?raw=true)
 
+**Sprint Sheet**
+
+[CMPE-202-Sprint Sheet.pdf](https://github.com/gopinathsjsu/team-project-data-miners/files/8683504/CMPE-202-Sprint.Sheet.pdf)
 
 
+[CMPE-202-Sprint Sheet.xlsx](https://github.com/gopinathsjsu/team-project-data-miners/files/8683507/CMPE-202-Sprint.Sheet.xlsx)
