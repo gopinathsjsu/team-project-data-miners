@@ -132,6 +132,7 @@ NOTE: we had already included these features in glitch repo. Now adding here too
 
 
 **ARCHTECTURE DIAGRAM:**
+
 This was also avaiable in Glitch Repo
 ![Archtecure](https://github.com/gopinathsjsu/team-project-data-miners/blob/main/Architecture.png?raw=true)
 
@@ -141,3 +142,9 @@ This was also avaiable in Glitch Repo
 
 
 [CMPE-202-Sprint Sheet.xlsx](https://github.com/gopinathsjsu/team-project-data-miners/files/8683507/CMPE-202-Sprint.Sheet.xlsx)
+
+
+**Sprint Board**
+
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/89234077/168198980-6a005b17-ac05-41dd-b698-43db139df625.png">
+
