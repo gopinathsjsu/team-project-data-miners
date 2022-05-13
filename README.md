@@ -52,7 +52,7 @@ https://trello.com/b/WqPeCt9t/data-miners-kanban
 
 NOTE: we had already included these features in glitch repo. Now adding here too.
 
-**FEATURES:**
+## **FEATURES:**
 
 1. _USER CAN LOGIN/SIGNUP. We have added Authentication with Google. To allow Customer's login/sign-up via Google._
 
@@ -72,7 +72,7 @@ NOTE: we had already included these features in glitch repo. Now adding here too
 
 9. _Allow customers to pay via Rewards._
 
-**CUSTOMER APIs:**
+## **CUSTOMER APIs:**
 
 1. _ADD CUSTOMER_
 
@@ -88,11 +88,11 @@ NOTE: we had already included these features in glitch repo. Now adding here too
 
 7. _CANCEL BOOKING_
 
-**REWARDS:**
+## **REWARDS:**
 
 1. _GET REWARDS BY CUSTOMER_
 
-**HOTEL:**
+## **HOTEL:**
 
 2. _ADD HOTEL_
 
@@ -124,19 +124,19 @@ NOTE: we had already included these features in glitch repo. Now adding here too
 
 16. _CANCEL BOOKING_
 
-**AUTH:**
+## **AUTH:**
 
 1. _LOGIN_
 
 2. _LOGOUT_
 
 
-**ARCHTECTURE DIAGRAM:**
-
+## **ARCHTECTURE DIAGRAM:**
 This was also avaiable in Glitch Repo
 ![Archtecure](https://github.com/gopinathsjsu/team-project-data-miners/blob/main/Architecture.png?raw=true)
 
-**Sprint Sheet**
+
+## **Sprint Sheet**
 
 [CMPE-202-Sprint Sheet.pdf](https://github.com/gopinathsjsu/team-project-data-miners/files/8683504/CMPE-202-Sprint.Sheet.pdf)
 
@@ -144,7 +144,7 @@ This was also avaiable in Glitch Repo
 [CMPE-202-Sprint Sheet.xlsx](https://github.com/gopinathsjsu/team-project-data-miners/files/8683507/CMPE-202-Sprint.Sheet.xlsx)
 
 
-**Sprint Board**
+## **Sprint Board**
 
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/89234077/168198980-6a005b17-ac05-41dd-b698-43db139df625.png">
 
